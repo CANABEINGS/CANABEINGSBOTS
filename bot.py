@@ -15,7 +15,7 @@ Join the community on Telegram, X, and Discord
 
 Follow project updates on the CANA website"""
 
-IMAGE_URL = "https://i.imgur.com/rik3Kyc.jpeg"  # Direct image link from imgur album
+IMAGE_URL = "https://i.imgur.com/jNGP9gh.png"
 
 def start(update: Update, context: CallbackContext) -> None:
     keyboard = [
