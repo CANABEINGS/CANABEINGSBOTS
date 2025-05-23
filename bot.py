@@ -1,0 +1,40 @@
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, Bot
+from telegram.ext import Updater, CommandHandler, CallbackContext
+
+TOKEN = "7641749973:AAHlZReWYPR3D55IEzZgyePZaJLC2VBbQ5g"
+
+WELCOME_TEXT = """Welcome to CANA — Culture And New Assets
+
+A new wave of ownership. Mint OG NFTs and join our community redefining Education and culture through Web3.
+
+Instructions:
+
+Mint your OG NFT to gain access
+
+Join the community on Telegram, X, and Discord
+
+Follow project updates on the CANA website"""
+
+IMAGE_URL = "https://i.imgur.com/rik3Kyc.jpeg"  # Direct image link from imgur album
+
+def start(update: Update, context: CallbackContext) -> None:
+    keyboard = [
+        [InlineKeyboardButton("CANA WEBSITE", url="https://canabeings.github.io/cana/")],
+        [InlineKeyboardButton("MINT OG NFTs", url="https://canabeings.github.io/OG-NFT-COLLECTION-/")],
+        [InlineKeyboardButton("Telegram Channel", url="https://t.me/canabeing"),
+         InlineKeyboardButton("Follow X", url="https://twitter.com/CANA_BEINGS")],
+        [InlineKeyboardButton("Join Discord", url="https://discord.gg/69EBmXNt")]
+    ]
+
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=IMAGE_URL, caption=WELCOME_TEXT, reply_markup=reply_markup)
+
+def main():
+    updater = Updater(TOKEN)
+    dp = updater.dispatcher
+    dp.add_handler(CommandHandler("start", start))
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == "__main__":
+    main()
